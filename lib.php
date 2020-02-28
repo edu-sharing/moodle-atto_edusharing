@@ -71,15 +71,15 @@ function atto_edusharing_params_for_js($elementid, $options, $fpoptions) {
     //disable edusharing button for content that is viewable on the front-page
     $pagetype = $PAGE->pagetype;
     if($pagetype == 'course-edit' || $pagetype == 'admin-setting-frontpagesettings'){
-        $params['disabled'] = false;
+        $params['disabled'] = true;
         return $params;
     }
 
     if (!has_capability('atto/edusharing:visible', $coursecontext)) {
-        $params['disabled'] = false;
+        $params['disabled'] = true;
         return $params;
     }
-    $params['disabled'] = true;
+    $params['disabled'] = false;
     $params['repourl'] = trim(get_config('edusharing', 'application_cc_gui_url'), '/');
     $params['courseid'] = $COURSE->id;
 
