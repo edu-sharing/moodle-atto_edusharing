@@ -83,9 +83,9 @@ function atto_edusharing_params_for_js($elementid, $options, $fpoptions) {
     $params['repourl'] = trim(get_config('edusharing', 'application_cc_gui_url'), '/');
     $params['courseid'] = $COURSE->id;
 
-    $ccauth = new mod_edusharing_web_service_factory();
-    $ticket = $ccauth->edusharing_authentication_get_ticket();
-    $params['ticket'] = $ticket;
+    //$ccauth = new mod_edusharing_web_service_factory();
+    //$ticket = $ccauth->edusharing_authentication_get_ticket();
+    //$params['ticket'] = $ticket;
 
     return $params;
 }

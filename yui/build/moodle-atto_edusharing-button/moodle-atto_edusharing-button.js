@@ -498,8 +498,33 @@ Y.namespace('M.atto_edusharing').Button = Y.Base.create('button', Y.M.editor_att
     },
 
     open_repo: function () {
-        var url = this.get('repourl') + '/components/search?reurl=WINDOW&applyDirectories=true&ticket=' + this.get('ticket');
-        window.win = window.open(url);
+
+        var fetchUrl = M.cfg.wwwroot + '/lib/editor/atto/plugins/edusharing/fetch.php';
+        var repoUrl = this.get('repourl');
+
+        //fetch ticket
+        fetch(fetchUrl, {
+            method : 'post',
+            mode:    'cors',
+            headers: {
+                'Content-Type': 'application/json',  // sent request
+                'Accept':       'application/json'   // expected data sent back
+            },
+            body: JSON.stringify({
+                useCase: 'getTicket'
+            })
+        })
+            .then(function(response) {
+                if (response.status >= 200 && response.status < 300) {
+                    return response.text();
+                }
+                throw new Error(response.statusText);
+            })
+            .then(function(response) {
+                var ticket = response;
+                repoUrl += '/components/search?reurl=WINDOW&applyDirectories=true&ticket=' + ticket;
+                window.win = window.open(repoUrl);
+            })
     },
 
     recalculateDimensions: function (e) {
