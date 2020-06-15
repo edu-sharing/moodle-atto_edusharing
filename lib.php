@@ -59,14 +59,11 @@ function atto_edusharing_strings_for_js() {
 
 /**
  * Return the js params required for this module.
- * @param $elementid
- * @param $options
- * @param $fpoptions
  * @return array of additional params to pass to javascript init function for this module.
  * @throws coding_exception
  * @throws dml_exception
  */
-function atto_edusharing_params_for_js($elementid, $options, $fpoptions) {
+function atto_edusharing_params_for_js() {
     global $PAGE, $COURSE;
 
     $params = array();

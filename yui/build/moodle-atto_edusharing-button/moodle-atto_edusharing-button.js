@@ -42,7 +42,8 @@ var TEMPLATE = '<div id="edusharing_hint"> ' +
     '<img id="edusharing_hint_help" src="' + M.cfg.wwwroot + '/lib/editor/atto/plugins/edusharing/pix/help_en.gif">' +
     '{{get_string "hint1" component}}<br/><br/>{{get_string "hint2" component}}' +
     '<div style="clear: both"></div>' +
-    '<div id="edusharing_hint_skip"><input type="checkbox" id="edusharing_hint_check" name="edusharing_hint_check" value="dontshow" />' +
+    '<div id="edusharing_hint_skip"><input type="checkbox" id="edusharing_hint_check" ' +
+        'name="edusharing_hint_check" value="dontshow" />' +
     '{{get_string "skipHint" component}}</div>' +
     '<div class="edusharing_center edusharing_hint_buttons"><a id="edusharing_hint_close" class="btn btn-secondary" href="#">' +
     '{{get_string "cancel" component}}</a> ' +
@@ -114,7 +115,7 @@ Y.namespace('M.atto_edusharing').Button = Y.Base.create('button', Y.M.editor_att
      *
      * @method Initializer
      */
-    initializer: function () {
+    initializer: function() {
         // If we don't have the capability to view then give up.
         if (this.get('disabled')) {
             return;
@@ -138,7 +139,7 @@ Y.namespace('M.atto_edusharing').Button = Y.Base.create('button', Y.M.editor_att
         this.getExistingObjects();
 
         var that = this;
-        window.addEventListener("message", function (event) {
+        window.addEventListener("message", function(event) {
             if (event.data.event == "APPLY_NODE") {
                 var node = event.data.data;
                 window.win.close();
@@ -147,18 +148,18 @@ Y.namespace('M.atto_edusharing').Button = Y.Base.create('button', Y.M.editor_att
         }, false);
     },
 
-    getUrlVars: function (query) {
+    getUrlVars: function(query) {
         var vars = {};
         if (!query.startsWith('?')) {
             query = '?' + query;
         }
-        var parts = query.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+        var parts = query.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, key, value) {
             vars[key] = value;
         });
         return vars;
     },
 
-    getExistingObjects: function () {
+    getExistingObjects: function() {
         var content = this.get('host').textarea.get('value');
         var container = document.createElement('div');
         container.innerHTML = content;
@@ -177,7 +178,7 @@ Y.namespace('M.atto_edusharing').Button = Y.Base.create('button', Y.M.editor_att
                     }
 
                     var href = new URL(query);
-                    const searchParams = href.searchParams;
+                    var searchParams = href.searchParams;
 
                     var object = new edusharingObject(this.get('courseid'));
                     if (object.importNode(searchParams)) {
@@ -200,7 +201,7 @@ Y.namespace('M.atto_edusharing').Button = Y.Base.create('button', Y.M.editor_att
         }
     },
 
-    updateDialog: function (node, update) {
+    updateDialog: function(node, update) {
         Y.one('#edusharing_form').set('style', 'display:block');
         Y.one('#edusharing_hint').set('style', 'display:none');
 
@@ -245,7 +246,7 @@ Y.namespace('M.atto_edusharing').Button = Y.Base.create('button', Y.M.editor_att
         }
     },
 
-    eduSubmit: function () {
+    eduSubmit: function() {
         var content = this.get('host').textarea.get('value');
         var container = document.createElement('div');
         container.innerHTML = content;
@@ -265,7 +266,7 @@ Y.namespace('M.atto_edusharing').Button = Y.Base.create('button', Y.M.editor_att
                     }
 
                     var href = new URL(query);
-                    const searchParams = href.searchParams;
+                    var searchParams = href.searchParams;
 
                     var resource_id = searchParams.get('resourceId');
                     if (resource_id && this.get('existingObjects')[resource_id]) {
@@ -310,7 +311,7 @@ Y.namespace('M.atto_edusharing').Button = Y.Base.create('button', Y.M.editor_att
         this.get('host').textarea.set('value', container.innerHTML);
     },
 
-    getQueryStringFromParams: function (params) {
+    getQueryStringFromParams: function(params) {
         var out = [];
         for (var key in params) {
             out.push(key + '=' + params[key]);
@@ -318,13 +319,13 @@ Y.namespace('M.atto_edusharing').Button = Y.Base.create('button', Y.M.editor_att
         return out.join('&');
     },
 
-    getPreviewUrl: function (resourceId) {
+    getPreviewUrl: function(resourceId) {
         var previewUrl = M.cfg.wwwroot + '/lib/editor/atto/plugins/edusharing/preview.php';
         previewUrl += '?resourceId=' + resourceId;
         return previewUrl;
     },
 
-    getSelectedElement: function () {
+    getSelectedElement: function() {
         var element = this.get('host').getSelectedNodes()._nodes[0];
         if (element && element.nodeType && element.nodeType == 3) {
             element = element.parentElement;
@@ -341,7 +342,7 @@ Y.namespace('M.atto_edusharing').Button = Y.Base.create('button', Y.M.editor_att
         return '';
     },
 
-    handleUpdate: function () {
+    handleUpdate: function() {
         var selectedElement;
         var node = [];
 
@@ -356,7 +357,7 @@ Y.namespace('M.atto_edusharing').Button = Y.Base.create('button', Y.M.editor_att
             }
 
             var href = new URL(query);
-            const searchParams = href.searchParams;
+            var searchParams = href.searchParams;
 
             if (searchParams.get('mediatype') == 'folder') {
                 node.isDirectory = true;
@@ -404,7 +405,7 @@ Y.namespace('M.atto_edusharing').Button = Y.Base.create('button', Y.M.editor_att
      *
      * @method _displayDialogue
      */
-    _displayDialogue: function (e, clickedicon) {
+    _displayDialogue: function(e, clickedicon) {
         e.preventDefault();
 
         var width = 800;
@@ -435,15 +436,15 @@ Y.namespace('M.atto_edusharing').Button = Y.Base.create('button', Y.M.editor_att
         if (!update) {
             Y.one('#edusharing_hint_logo').setAttribute('src', this.get('repourl') + '/assets/images/logo.svg');
             var that = this;
-            YUI().use('cookie', function (Y) {
+            YUI().use('cookie', function(Y) {
                 if (Y.Cookie.get("edusharing_hint_hide")) {
                     // Open repository if user checked up.
                     that.open_repo();
-                    YUI().use('node', function (Y) {
+                    YUI().use('node', function(Y) {
                         Y.one('#edusharing_hint_check').setAttribute('checked', 'checked');
                     });
                 } else {
-                    YUI().use('node', function (Y) {
+                    YUI().use('node', function(Y) {
                         Y.one('#edusharing_hint_check').removeAttribute('checked');
                     });
                 }
@@ -462,7 +463,7 @@ Y.namespace('M.atto_edusharing').Button = Y.Base.create('button', Y.M.editor_att
      * @return {Node} The content to place in the dialogue.
      * @private
      */
-    _getFormContent: function (clickedicon) {
+    _getFormContent: function(clickedicon) {
         var template = Y.Handlebars.compile(TEMPLATE),
             content = Y.Node.create(template({
                 component: COMPONENTNAME,
@@ -485,30 +486,30 @@ Y.namespace('M.atto_edusharing').Button = Y.Base.create('button', Y.M.editor_att
         return content;
     },
 
-    recalculateTitleWidth: function () {
+    recalculateTitleWidth: function() {
         Y.one('#edusharing_title_helper').setContent(Y.one('#edusharing_title').get('value'));
         Y.one('#edusharing_title').setStyle('width', (Y.one('#edusharing_title_helper').get('offsetWidth') + 10) + 'px');
     },
 
-    closeDialog: function (e) {
+    closeDialog: function(e) {
         e.preventDefault();
         this.getDialogue({
             focusAfterHide: null
         }).hide();
     },
 
-    open_repo: function () {
+    open_repo: function() {
 
         var fetchUrl = M.cfg.wwwroot + '/lib/editor/atto/plugins/edusharing/fetch.php';
         var repoUrl = this.get('repourl');
 
-        //fetch ticket
+        // Fetch ticket
         fetch(fetchUrl, {
-            method : 'post',
+            method: 'post',
             mode:    'cors',
             headers: {
-                'Content-Type': 'application/json',  // sent request
-                'Accept':       'application/json'   // expected data sent back
+                'Content-Type': 'application/json', // Sent request
+                'Accept':       'application/json' // Expected data sent back
             },
             body: JSON.stringify({
                 useCase: 'getTicket'
@@ -524,10 +525,10 @@ Y.namespace('M.atto_edusharing').Button = Y.Base.create('button', Y.M.editor_att
                 var ticket = response;
                 repoUrl += '/components/search?reurl=WINDOW&applyDirectories=true&ticket=' + ticket;
                 window.win = window.open(repoUrl);
-            })
+            });
     },
 
-    recalculateDimensions: function (e) {
+    recalculateDimensions: function(e) {
         if (e._currentTarget.id == 'edusharing_height') {
             Y.one('#edusharing_width').set('value', Math.round(Y.one('#edusharing_height')
                 .get('value') * Y.one('#edusharing_ratio').get('value')));
@@ -537,8 +538,8 @@ Y.namespace('M.atto_edusharing').Button = Y.Base.create('button', Y.M.editor_att
         }
     },
 
-    edusharing_hint_check_change: function (e) {
-        YUI().use('cookie', function (Y) {
+    edusharing_hint_check_change: function(e) {
+        YUI().use('cookie', function(Y) {
             if (e.target._stateProxy.checked) {
                 Y.Cookie.set("edusharing_hint_hide", true, {expires: new Date("January 12, 2025")});
             } else {
@@ -552,7 +553,7 @@ Y.namespace('M.atto_edusharing').Button = Y.Base.create('button', Y.M.editor_att
      * @private
      */
 
-    _doInsert: function (e) {
+    _doInsert: function(e) {
         e.preventDefault();
         this.getDialogue({
             focusAfterHide: null
@@ -575,13 +576,13 @@ Y.namespace('M.atto_edusharing').Button = Y.Base.create('button', Y.M.editor_att
             }
             selectedElement.setAttribute('style', style);
             if (this.getType(node.mediatype) == 'ref') {
-                const url = new URL(selectedElement.attributes.href.value);
+                var url = new URL(selectedElement.attributes.href.value);
                 selectedElement.innerHTML = node.title;
                 url.searchParams.set('title', node.title);
                 url.searchParams.set('caption', node.caption);
                 selectedElement.setAttribute('href', url.toString());
             } else {
-                const url = new URL(selectedElement.attributes.src.value);
+                var url = new URL(selectedElement.attributes.src.value);
                 url.searchParams.set('title', node.title);
                 url.searchParams.set('caption', node.caption);
                 url.searchParams.set('width', node.width);
@@ -639,7 +640,7 @@ Y.namespace('M.atto_edusharing').Button = Y.Base.create('button', Y.M.editor_att
         this.markUpdated();
     },
 
-    getType: function (mediatype) {
+    getType: function(mediatype) {
         var type = "ref";
         switch (true) {
             case (mediatype.indexOf('image') > -1):
@@ -656,7 +657,7 @@ Y.namespace('M.atto_edusharing').Button = Y.Base.create('button', Y.M.editor_att
         return type;
     },
 
-    getNode: function () {
+    getNode: function() {
         var n = {};
         n.resid = Y.one('#edusharing_resid').get('value');
         n.title = Y.one('#edusharing_title').get('value');
@@ -786,7 +787,7 @@ edusharingObject.prototype.link = function link(node) {
              *
              * Parse response. Create new element. Append it.
              */
-            success: function (transId, o, args) {
+            success: function(transId, o, args) {
                 try {
                     var data = Y.JSON.parse(o.responseText);
                 } catch (exception) {
@@ -806,7 +807,7 @@ edusharingObject.prototype.link = function link(node) {
             },
 
             // Request failed.
-            failure: function (transId, o, args) {
+            failure: function(transId, o, args) {
                 alert('error setting usage');
                 return false;
             }
@@ -845,11 +846,11 @@ edusharingObject.prototype.unlink = function unlink(node) {
         },
 
         on: {
-            success: function (transId, o, args) {
+            success: function(transId, o, args) {
                 return true;
             },
 
-            failure: function (transId, o, args) {
+            failure: function(transId, o, args) {
                 alert('error deleting object' + ' ' + object.id + '.');
                 return false;
             }
