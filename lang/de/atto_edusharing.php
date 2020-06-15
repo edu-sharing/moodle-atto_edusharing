@@ -39,7 +39,14 @@ $string['dimensions'] = 'Dimensionen';
 $string['dimensionsWidth'] = 'Breite';
 $string['dimensionsheight'] = 'Höhe';
 $string['openRepo'] = 'REPOSITORIUM ÖFFNEN';
-$string['hint1'] = 'Wählen Sie ein edu-sharing Objekt aus dem Repositorium, um es in Moodle einzubinden. Klicken Sie dazu auf "' . $string['openRepo'] . '".';
+$string['hint1'] = 'Wählen Sie ein edu-sharing Objekt aus dem Repositorium, um es in Moodle einzubinden. Klicken Sie dazu auf "REPOSITORIUM ÖFFNEN".';
 $string['hint2'] = 'Suchen Sie nun das gewünschte Objekt und betätigen Sie die "ÜBERNEHMEN" Schaltfläche.';
 $string['skipHint'] = 'Beim nächsten Mal direkt zur Suche springen.';
 $string['directoryHint'] = 'Der Ordner wird eingebunden. Elemente des Ordners werden angezeigt, nicht aber weitere Unterordner.';
+$string['privacy:metadata'] = 'Das edu-sharing atto-Plugin speichert keine Benutzerdaten.';
+
+$string['error_resource_not_found'] = 'Ressource kann nicht gefunden werden.';
+$string['error_deleting_instance'] = 'Fehler beim Löschen der edu-sharing Instanz.';
+$string['error_deleting_capability'] = 'Keine Berechtigung zum Löschen.';
+$string['error_fetching_capability'] = 'Keine Berechtigung zum Holen der Datei.';
+$string['error_insert_capability'] = 'Keine Berechtigung zum Einfügen der Datei.';
