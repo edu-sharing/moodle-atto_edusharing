@@ -25,6 +25,7 @@
 // Create preview link with signature.
 require_once(__DIR__ . '/../../../../../config.php');
 require_once($CFG->dirroot . '/lib/setup.php');
+require_once($CFG->libdir.'/filelib.php');
 require_once($CFG->dirroot . '/mod/edusharing/lib.php');
 
 require_login();
@@ -55,16 +56,25 @@ $url .= '&sig=' . $sig;
 $url .= '&signed=' . $sigdata;
 $url .= '&ts=' . $time;
 
-$curlhandle = curl_init($url);
-curl_setopt($curlhandle, CURLOPT_SSL_VERIFYPEER, false);
-curl_setopt($curlhandle, CURLOPT_SSL_VERIFYHOST, false);
-curl_setopt($curlhandle, CURLOPT_FOLLOWLOCATION, 1);
-curl_setopt($curlhandle, CURLOPT_HEADER, 0);
-curl_setopt($curlhandle, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt($curlhandle, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
-$output = curl_exec($curlhandle);
-$mimetype = curl_getinfo($curlhandle, CURLINFO_CONTENT_TYPE);
-curl_close($curlhandle);
-header('Content-type: ' . $mimetype);
+$curl = new curl();
+$curl->setopt( array(
+    'CURLOPT_SSL_VERIFYPEER' => false,
+    'CURLOPT_SSL_VERIFYHOST' => false,
+    'CURLOPT_FOLLOWLOCATION' => 1,
+    'CURLOPT_HEADER' => 0,
+    'CURLOPT_RETURNTRANSFER' => 1,
+    'CURLOPT_USERAGENT' => $_SERVER['HTTP_USER_AGENT'],
+    ));
+
+$output =  $curl->get($url);
+
+if ($curl->error) {
+    debugging('cURL Error: '.$curl->error);
+    echo 'cURL Error: '.$curl->error;
+    exit();
+}
+
+$curl_info = $curl->get_info();
+header('Content-type: ' . $curl_info['content_type']);
 echo $output;
 exit();
