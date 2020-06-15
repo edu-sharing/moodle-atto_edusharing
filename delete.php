@@ -28,6 +28,13 @@ require_once($CFG->dirroot . '/lib/setup.php');
 require_login();
 require_sesskey();
 
+$coursecontext = context_course::instance($COURSE->id);
+if (!has_capability('atto/edusharing:visible', $coursecontext)) {
+    trigger_error(get_string('error_deleting_capability', 'editor_edusharing'), E_USER_WARNING);
+    header('', true, 500);
+    exit();
+}
+
 require_once($CFG->dirroot . '/mod/edusharing/lib.php');
 
 $input = file_get_contents('php://input');
@@ -53,6 +60,5 @@ if (!$edusharing) {
 
 if (!edusharing_delete_instance($edusharing->id)) {
     trigger_error(get_string('error_deleting_instance', 'editor_edusharing'), E_USER_WARNING);
-
     header('', true, 500);
 }

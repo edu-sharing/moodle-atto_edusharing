@@ -22,12 +22,18 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-
 require_once(__DIR__ . '/../../../../../config.php');
 require_once($CFG->dirroot . '/mod/edusharing/lib/cclib.php');
 require_once($CFG->dirroot . '/mod/edusharing/locallib.php');
 
 require_login();
+
+$coursecontext = context_course::instance($COURSE->id);
+if (!has_capability('atto/edusharing:visible', $coursecontext)) {
+    trigger_error(get_string('error_fetching_capability', 'editor_edusharing'), E_USER_WARNING);
+    header('', true, 500);
+    exit();
+}
 
 $json_str = file_get_contents('php://input');
 $json_obj = json_decode($json_str, true);
@@ -43,6 +49,3 @@ switch ($json_obj['useCase']) {
 }
 
 exit();
-
-
-
