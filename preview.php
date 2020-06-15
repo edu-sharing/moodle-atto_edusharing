@@ -17,7 +17,7 @@
 /**
  * Fetches object preview from repository
  *
- * @package    editor_edusharing
+ * @package    atto_edusharing
  * @copyright  metaVentis GmbH — http://metaventis.com
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -66,7 +66,7 @@ $curl->setopt( array(
     'CURLOPT_USERAGENT' => $_SERVER['HTTP_USER_AGENT'],
     ));
 
-$output =  $curl->get($url);
+$output = $curl->get($url);
 
 if ($curl->error) {
     debugging('cURL Error: '.$curl->error);
@@ -74,7 +74,7 @@ if ($curl->error) {
     exit();
 }
 
-$curl_info = $curl->get_info();
-header('Content-type: ' . $curl_info['content_type']);
+$curlInfo = $curl->get_info();
+header('Content-type: ' . $curlInfo['content_type']);
 echo $output;
 exit();

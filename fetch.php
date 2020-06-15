@@ -17,7 +17,7 @@
 /**
  * Fetches data for js
  *
- * @package    editor_edusharing
+ * @package    atto_edusharing
  * @copyright  metaVentis GmbH — http://metaventis.com
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -35,10 +35,10 @@ if (!has_capability('atto/edusharing:visible', $coursecontext)) {
     exit();
 }
 
-$json_str = file_get_contents('php://input');
-$json_obj = json_decode($json_str, true);
+$jsonStr = file_get_contents('php://input');
+$jsonObj = json_decode($jsonStr, true);
 
-switch ($json_obj['useCase']) {
+switch ($jsonObj['useCase']) {
     case 'getTicket':
         $ccauth = new mod_edusharing_web_service_factory();
         $ticket = $ccauth->edusharing_authentication_get_ticket();

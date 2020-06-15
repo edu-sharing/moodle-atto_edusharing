@@ -27,7 +27,6 @@ defined('MOODLE_INTERNAL') || die();
 
 /**
  * Initialise this plugin
- * @param string $elementid
  */
 function atto_edusharing_strings_for_js() {
     global $PAGE;
@@ -60,7 +59,12 @@ function atto_edusharing_strings_for_js() {
 
 /**
  * Return the js params required for this module.
+ * @param $elementid
+ * @param $options
+ * @param $fpoptions
  * @return array of additional params to pass to javascript init function for this module.
+ * @throws coding_exception
+ * @throws dml_exception
  */
 function atto_edusharing_params_for_js($elementid, $options, $fpoptions) {
     global $PAGE, $COURSE;
@@ -68,9 +72,9 @@ function atto_edusharing_params_for_js($elementid, $options, $fpoptions) {
     $params = array();
     $coursecontext = context_course::instance($COURSE->id);
 
-    //disable edusharing button for content that is viewable on the front-page
+    // disable edusharing button for content that is viewable on the front-page
     $pagetype = $PAGE->pagetype;
-    if($pagetype == 'course-edit' || $pagetype == 'admin-setting-frontpagesettings'){
+    if ($pagetype == 'course-edit' || $pagetype == 'admin-setting-frontpagesettings') {
         $params['disabled'] = true;
         return $params;
     }
@@ -82,10 +86,6 @@ function atto_edusharing_params_for_js($elementid, $options, $fpoptions) {
     $params['disabled'] = false;
     $params['repourl'] = trim(get_config('edusharing', 'application_cc_gui_url'), '/');
     $params['courseid'] = $COURSE->id;
-
-    //$ccauth = new mod_edusharing_web_service_factory();
-    //$ticket = $ccauth->edusharing_authentication_get_ticket();
-    //$params['ticket'] = $ticket;
 
     return $params;
 }
