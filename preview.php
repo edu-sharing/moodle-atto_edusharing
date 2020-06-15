@@ -74,7 +74,7 @@ if ($curl->error) {
     exit();
 }
 
-$curlInfo = $curl->get_info();
-header('Content-type: ' . $curlInfo['content_type']);
+$curlinfo = $curl->get_info();
+header('Content-type: ' . $curlinfo['content_type']);
 echo $output;
 exit();

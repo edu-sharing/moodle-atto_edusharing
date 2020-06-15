@@ -40,7 +40,8 @@ var TEMPLATE = '<div id="edusharing_hint"> ' +
     '<img id="edusharing_hint_help" src="' + M.cfg.wwwroot + '/lib/editor/atto/plugins/edusharing/pix/help_en.gif">' +
     '{{get_string "hint1" component}}<br/><br/>{{get_string "hint2" component}}' +
     '<div style="clear: both"></div>' +
-    '<div id="edusharing_hint_skip"><input type="checkbox" id="edusharing_hint_check" name="edusharing_hint_check" value="dontshow" />' +
+    '<div id="edusharing_hint_skip"><input type="checkbox" id="edusharing_hint_check" ' +
+        'name="edusharing_hint_check" value="dontshow" />' +
     '{{get_string "skipHint" component}}</div>' +
     '<div class="edusharing_center edusharing_hint_buttons"><a id="edusharing_hint_close" class="btn btn-secondary" href="#">' +
     '{{get_string "cancel" component}}</a> ' +

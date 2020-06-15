@@ -35,10 +35,10 @@ if (!has_capability('atto/edusharing:visible', $coursecontext)) {
     exit();
 }
 
-$jsonStr = file_get_contents('php://input');
-$jsonObj = json_decode($jsonStr, true);
+$jsonstr = file_get_contents('php://input');
+$jsonobj = json_decode($jsonstr, true);
 
-switch ($jsonObj['useCase']) {
+switch ($jsonobj['useCase']) {
     case 'getTicket':
         $ccauth = new mod_edusharing_web_service_factory();
         $ticket = $ccauth->edusharing_authentication_get_ticket();

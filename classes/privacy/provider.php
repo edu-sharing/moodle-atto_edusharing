@@ -26,7 +26,9 @@ namespace atto_edusharing\privacy;
 
 /**
  * Class provider
- * @package atto_edusharing\privacy
+ * @package    atto_edusharing
+ * @copyright  COPYRIGHTINFO
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class provider implements
     // This plugin does not store any personal user data.

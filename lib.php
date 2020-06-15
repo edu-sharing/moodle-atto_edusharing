@@ -72,7 +72,7 @@ function atto_edusharing_params_for_js($elementid, $options, $fpoptions) {
     $params = array();
     $coursecontext = context_course::instance($COURSE->id);
 
-    // disable edusharing button for content that is viewable on the front-page
+    // Disable edusharing button for content that is viewable on the front-page.
     $pagetype = $PAGE->pagetype;
     if ($pagetype == 'course-edit' || $pagetype == 'admin-setting-frontpagesettings') {
         $params['disabled'] = true;
