@@ -34,7 +34,6 @@ $jsonobj = json_decode($jsonstr, true);
 $coursecontext = context_course::instance($jsonobj['courseid']);
 if (!has_capability('moodle/course:update', $coursecontext)) {
     trigger_error(get_string('error_fetching_capability', 'editor_edusharing'), E_USER_WARNING);
-    error_log('error_fetching_capability');
     header('', true, 500);
     exit();
 }
