@@ -500,6 +500,7 @@ Y.namespace('M.atto_edusharing').Button = Y.Base.create('button', Y.M.editor_att
 
         var fetchUrl = M.cfg.wwwroot + '/lib/editor/atto/plugins/edusharing/fetch.php';
         var repoUrl = this.get('repourl');
+        var courseid = this.get('courseid');
 
         // Fetch ticket
         fetch(fetchUrl, {
@@ -510,7 +511,8 @@ Y.namespace('M.atto_edusharing').Button = Y.Base.create('button', Y.M.editor_att
                 'Accept':       'application/json' // Expected data sent back
             },
             body: JSON.stringify({
-                useCase: 'getTicket'
+                useCase: 'getTicket',
+                courseid: courseid
             })
         })
             .then(function(response) {
@@ -757,9 +759,10 @@ edusharingObject.prototype.importNode = function importNode(searchParams) {
  * @return bool
  */
 edusharingObject.prototype.link = function link(node) {
-    // Helper-url.
 
-    var helper_url = M.cfg.wwwroot + '/lib/editor/atto/plugins/edusharing/insert.php?sesskey=' + M.cfg.sesskey;
+    // Helper-url.
+    var helper_url = M.cfg.wwwroot + '/lib/editor/atto/plugins/edusharing/insert.php?sesskey=' +
+        M.cfg.sesskey + '&courseid=' + this.course;
 
     // Bind object for context.
     var object = this;
@@ -824,7 +827,8 @@ edusharingObject.prototype.link = function link(node) {
  */
 edusharingObject.prototype.unlink = function unlink(node) {
     // Tell moodle about deleted object.
-    var helper_url = M.cfg.wwwroot + '/lib/editor/atto/plugins/edusharing/delete.php?sesskey=' + M.cfg.sesskey;
+    var helper_url = M.cfg.wwwroot + '/lib/editor/atto/plugins/edusharing/delete.php?sesskey=' + M.cfg.sesskey  +
+        '&courseid=' + this.course;
 
     // Bind object for context.
     var object = this;

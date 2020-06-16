@@ -28,7 +28,7 @@ require_once($CFG->dirroot . '/lib/setup.php');
 require_login();
 require_sesskey();
 
-$coursecontext = context_course::instance($COURSE->id);
+$coursecontext = context_course::instance($_GET['courseid']);
 if (!has_capability('atto/edusharing:visible', $coursecontext)) {
     trigger_error(get_string('error_insert_capability', 'editor_edusharing'), E_USER_WARNING);
     header('', true, 500);

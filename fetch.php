@@ -28,15 +28,18 @@ require_once($CFG->dirroot . '/mod/edusharing/locallib.php');
 
 require_login();
 
-$coursecontext = context_course::instance($COURSE->id);
-if (!has_capability('atto/edusharing:visible', $coursecontext)) {
+$jsonstr = file_get_contents('php://input');
+$jsonobj = json_decode($jsonstr, true);
+
+$coursecontext = context_course::instance($jsonobj['courseid']);
+if (!has_capability('moodle/course:update', $coursecontext)) {
     trigger_error(get_string('error_fetching_capability', 'editor_edusharing'), E_USER_WARNING);
+    error_log('error_fetching_capability');
     header('', true, 500);
     exit();
 }
 
-$jsonstr = file_get_contents('php://input');
-$jsonobj = json_decode($jsonstr, true);
+
 
 switch ($jsonobj['useCase']) {
     case 'getTicket':
