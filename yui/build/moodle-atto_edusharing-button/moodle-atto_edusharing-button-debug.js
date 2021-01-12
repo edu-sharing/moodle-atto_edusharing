@@ -214,10 +214,30 @@ Y.namespace('M.atto_edusharing').Button = Y.Base.create('button', Y.M.editor_att
         } else if (this.getType(node.mediatype) == "ref") {
             Y.one('#edusharing_wrapper_dimensions').set('style', 'visibility:hidden');
         } else {
-            var width = Math.round(node.properties['ccm:width']) || 600;
-            var height = Math.round(node.properties['ccm:height']) || 400;
-            Y.one('#edusharing_width').set('value', width);
-            Y.one('#edusharing_height').set('value', height);
+            var maxWidth = 1000; // Max width for the image
+            var maxHeight = 1000;    // Max height for the image
+            var ratio = 0;  // Used for aspect ratio
+            var width = Math.round(node.properties['ccm:width']) || 600;    // Current image width
+            var height = Math.round(node.properties['ccm:height']) || 400;  // Current image height
+
+            // Check if the current width is larger than the max
+            if(width > maxWidth){
+                ratio = maxWidth / width;   // get ratio for scaling image
+                height = height * ratio;    // Reset height to match scaled image
+                width = width * ratio;    // Reset width to match scaled image
+            }
+
+            // Check if current height is larger than max
+            if(height > maxHeight){
+                ratio = maxHeight / height; // get ratio for scaling image
+                width = width * ratio;    // Reset width to match scaled image
+                height = height * ratio;    // Reset height to match scaled image
+            }
+
+            //var width = Math.round(node.properties['ccm:width']) || 600;
+            //var height = Math.round(node.properties['ccm:height']) || 400;
+            Y.one('#edusharing_width').set('value', Math.round(width));
+            Y.one('#edusharing_height').set('value', Math.round(height));
             Y.one('#edusharing_ratio').set('value', width / height);
         }
 
@@ -500,6 +520,9 @@ Y.namespace('M.atto_edusharing').Button = Y.Base.create('button', Y.M.editor_att
 
     open_repo: function() {
 
+        window.win = window.open();
+        window.win.document.write('Loading edu-sharing ticket...');
+
         var fetchUrl = M.cfg.wwwroot + '/lib/editor/atto/plugins/edusharing/fetch.php';
         var repoUrl = this.get('repourl');
         var courseid = this.get('courseid');
@@ -526,7 +549,8 @@ Y.namespace('M.atto_edusharing').Button = Y.Base.create('button', Y.M.editor_att
             .then(function(response) {
                 var ticket = response;
                 repoUrl += '/components/search?reurl=WINDOW&applyDirectories=true&ticket=' + ticket;
-                window.win = window.open(repoUrl);
+                //window.win = window.open(repoUrl);
+                window.win.location.href = repoUrl;
             });
     },
 
