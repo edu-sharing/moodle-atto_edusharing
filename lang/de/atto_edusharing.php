@@ -45,6 +45,8 @@ $string['skipHint'] = 'Beim nächsten Mal direkt zur Suche springen.';
 $string['directoryHint'] = 'Der Ordner wird eingebunden. Elemente des Ordners werden angezeigt, nicht aber weitere Unterordner.';
 $string['privacy:metadata'] = 'Das edu-sharing atto-Plugin speichert keine Benutzerdaten.';
 
+$string['edusharing:visible'] = 'edu-sharing atto-plugin Sichtbarkeit';
+
 $string['error_resource_not_found'] = 'Ressource kann nicht gefunden werden.';
 $string['error_deleting_instance'] = 'Fehler beim Löschen der edu-sharing Instanz.';
 $string['error_deleting_capability'] = 'Keine Berechtigung zum Löschen.';

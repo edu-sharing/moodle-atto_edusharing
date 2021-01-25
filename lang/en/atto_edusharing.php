@@ -45,6 +45,8 @@ $string['skipHint'] = 'Open the search engine right away next time.';
 $string['directoryHint'] = 'The folder was embedded. Elements of the folder will be displayed, but not its subfolders.';
 $string['privacy:metadata'] = 'The edu-sharing atto-plugin does not store any user data.';
 
+$string['edusharing:visible'] = 'edu-sharing atto-plugin visibility';
+
 $string['error_resource_not_found'] = 'Resource not found.';
 $string['error_deleting_instance'] = 'Error deleting edu-sharing instance.';
 $string['error_deleting_capability'] = 'No capability to delete.';
