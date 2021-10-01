@@ -44,7 +44,7 @@ var TEMPLATE = '<div id="edusharing_hint"> ' +
     '<div style="clear: both"></div>' +
     '<div id="edusharing_hint_skip"><input type="checkbox" id="edusharing_hint_check" ' +
         'name="edusharing_hint_check" value="dontshow" />' +
-    '{{get_string "skipHint" component}}</div>' +
+    '<label for="edusharing_hint_check">{{get_string "skipHint" component}}</label></div>' +
     '<div class="edusharing_center edusharing_hint_buttons"><a id="edusharing_hint_close" class="btn btn-secondary" href="#">' +
     '{{get_string "cancel" component}}</a> ' +
     '<button id="edusharing_open_repo" class="btn btn-primary">{{get_string "openRepo" component}}</button></div>' +
@@ -279,10 +279,12 @@ Y.namespace('M.atto_edusharing').Button = Y.Base.create('button', Y.M.editor_att
 
                 if (Y.one(node).hasClass('edusharing_atto')) {
 
+                    var query = '';
+
                     if (node.nodeName.toLowerCase() == 'img') {
-                        var query = node.getAttribute('src');
+                        query = node.getAttribute('src');
                     } else {
-                        var query = node.getAttribute('href');
+                        query = node.getAttribute('href');
                     }
 
                     var href = new URL(query);
@@ -312,7 +314,7 @@ Y.namespace('M.atto_edusharing').Button = Y.Base.create('button', Y.M.editor_att
 
             // Stack child-nodes for further examination.
             if (node.hasChildNodes()) {
-                child = 0;
+                var child = 0;
                 while (child < node.childNodes.length) {
                     nodes.push(node.childNodes.item(child));
                     child++;
@@ -660,6 +662,7 @@ Y.namespace('M.atto_edusharing').Button = Y.Base.create('button', Y.M.editor_att
                     '&width=' + node.width +
                     '&height=' + node.height + '"';
                 insert = '<img alt="' + node.title + '" width="' + node.width + '" height="' + node.height + '" ' + insert + ' />';
+                insert += '<p>' + node.caption + '</p>';
             }
             this.get('host').insertContentAtFocusPoint(insert);
         }
