@@ -22,8 +22,8 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['pluginname'] = 'edu-sharing';
-$string['dialogtitle'] = 'edu-sharing material';
+$string['pluginname'] = get_config('edusharing', 'application_appname');
+$string['dialogtitle'] = get_config('edusharing', 'application_appname').' material';
 $string['settings'] = 'edu-sharing (Atto)';
 $string['insert'] = 'EMBED';
 $string['update'] = 'UPDATE';
@@ -39,11 +39,11 @@ $string['dimensions'] = 'Dimensions';
 $string['dimensionsWidth'] = 'Width';
 $string['dimensionsheight'] = 'Height';
 $string['openRepo'] = 'OPEN REPOSITORY';
-$string['hint1'] = 'Select an edu-sharing object from the repository to embed it in Moodle. Click on "OPEN REPOSITORY".';
+$string['hint1'] = 'Select an '.get_config('edusharing', 'application_appname').' object from the repository to embed it in Moodle. Click on "OPEN REPOSITORY".';
 $string['hint2'] = 'Search for the desired object and click the "APPLY" button.';
 $string['skipHint'] = 'Open the search engine right away next time.';
 $string['directoryHint'] = 'The folder was embedded. Elements of the folder will be displayed, but not its subfolders.';
-$string['privacy:metadata'] = 'The edu-sharing atto-plugin does not store any user data.';
+$string['privacy:metadata'] = 'The '.get_config('edusharing', 'application_appname').' atto-plugin does not store any user data.';
 
 $string['edusharing:visible'] = 'edu-sharing atto-plugin visibility';
 

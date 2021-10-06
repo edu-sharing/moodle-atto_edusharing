@@ -80,9 +80,16 @@ function atto_edusharing_params_for_js() {
         $params['disabled'] = true;
         return $params;
     }
+
+
     $params['disabled'] = false;
     $params['repourl'] = trim(get_config('edusharing', 'application_cc_gui_url'), '/');
     $params['courseid'] = $COURSE->id;
+    $params['buttonTitle'] = 'edu-sharing';
+
+    if (!empty(get_config('edusharing', 'application_appname'))){
+        $params['buttonTitle'] = get_config('edusharing', 'application_appname');
+    }
 
     return $params;
 }

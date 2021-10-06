@@ -57,8 +57,8 @@ try {
     }
 
     $edusharing->id = $id;
+    $edusharing->src = $CFG->wwwroot . '/mod/edusharing/pix/edusharing.png';
 
-    $edusharing->src = $CFG->wwwroot . '/lib/editor/edusharing/images/edusharing.png';
 
     header('Content-type: application/json', true, 200);
     echo json_encode($edusharing);

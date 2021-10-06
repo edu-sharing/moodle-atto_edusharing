@@ -22,8 +22,8 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['pluginname'] = 'edu-sharing';
-$string['dialogtitle'] = 'edu-sharing Material';
+$string['pluginname'] = get_config('edusharing', 'application_appname');
+$string['dialogtitle'] = get_config('edusharing', 'application_appname') . ' Material';
 $string['settings'] = 'edu-sharing (Atto)';
 $string['insert'] = 'EINFÜGEN';
 $string['update'] = 'AKTUALISIEREN';
@@ -39,11 +39,11 @@ $string['dimensions'] = 'Dimensionen';
 $string['dimensionsWidth'] = 'Breite';
 $string['dimensionsheight'] = 'Höhe';
 $string['openRepo'] = 'REPOSITORIUM ÖFFNEN';
-$string['hint1'] = 'Wählen Sie ein edu-sharing Objekt aus dem Repositorium, um es in Moodle einzubinden. Klicken Sie dazu auf "REPOSITORIUM ÖFFNEN".';
+$string['hint1'] = 'Wählen Sie ein '.get_config('edusharing', 'application_appname').' Objekt aus dem Repositorium, um es in Moodle einzubinden. Klicken Sie dazu auf "REPOSITORIUM ÖFFNEN".';
 $string['hint2'] = 'Suchen Sie nun das gewünschte Objekt und betätigen Sie die "ÜBERNEHMEN" Schaltfläche.';
 $string['skipHint'] = 'Beim nächsten Mal direkt zur Suche springen.';
 $string['directoryHint'] = 'Der Ordner wird eingebunden. Elemente des Ordners werden angezeigt, nicht aber weitere Unterordner.';
-$string['privacy:metadata'] = 'Das edu-sharing atto-Plugin speichert keine Benutzerdaten.';
+$string['privacy:metadata'] = 'Das '.get_config('edusharing', 'application_appname').' atto-Plugin speichert keine Benutzerdaten.';
 
 $string['edusharing:visible'] = 'edu-sharing atto-plugin Sichtbarkeit';
 

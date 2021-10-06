@@ -116,7 +116,7 @@ input#edusharing_title:hover + #edusharing_title_pencil {
     background-color: #efefef;
     background-repeat: no-repeat;
     background-size: 16px;
-    background-image: url('[[pix:atto_edusharing|/icon]]');
+    background-image: url('[[pix:edusharing|icon]]');
 }
 
 .editor_atto img.edusharing_atto {

@@ -24,14 +24,14 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version = 2021093001;        // The current plugin version (Date: YYYYMMDDXX).
+$plugin->version = 2021100603;        // The current plugin version (Date: YYYYMMDDXX).
 $plugin->requires = 2013110500;        // Requires this Moodle version.
 $plugin->component = 'atto_edusharing';  // Full name of the plugin (used for diagnostics).
 $plugin->maturity = MATURITY_STABLE;
 $plugin->dependencies = array(
-    'mod_edusharing' => 2018110801
+    'mod_edusharing' => 2021100601
 );
 // Human readable version information.
-$plugin->release = '5.0';
+$plugin->release = '6.0';
 
 

@@ -120,8 +120,9 @@ Y.namespace('M.atto_edusharing').Button = Y.Base.create('button', Y.M.editor_att
         }
         this.addButton({
             icon: 'icon',
-            iconComponent: 'atto_edusharing',
+            iconComponent: 'edusharing',
             buttonName: 'icon',
+            title: this.get('buttonTitle'),
             callback: this._displayDialogue,
             callbackArgs: 'icon',
             tags: '.edusharing_atto',
