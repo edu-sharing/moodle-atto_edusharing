@@ -41,6 +41,7 @@ $string['dimensionsheight'] = 'Höhe';
 $string['openRepo'] = 'REPOSITORIUM ÖFFNEN';
 $string['hint1'] = 'Wählen Sie ein '.get_config('edusharing', 'application_appname').' Objekt aus dem Repositorium, um es in Moodle einzubinden. Klicken Sie dazu auf "REPOSITORIUM ÖFFNEN".';
 $string['hint2'] = 'Suchen Sie nun das gewünschte Objekt und betätigen Sie die "ÜBERNEHMEN" Schaltfläche.';
+$string['customHint'] = get_config('edusharing', 'atto_hint');
 $string['skipHint'] = 'Beim nächsten Mal direkt zur Suche springen.';
 $string['directoryHint'] = 'Der Ordner wird eingebunden. Elemente des Ordners werden angezeigt, nicht aber weitere Unterordner.';
 $string['privacy:metadata'] = 'Das '.get_config('edusharing', 'application_appname').' atto-Plugin speichert keine Benutzerdaten.';

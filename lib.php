@@ -50,6 +50,7 @@ function atto_edusharing_strings_for_js() {
         'dimensionsheight',
         'hint1',
         'hint2',
+        'customHint',
         'skipHint',
         'openRepo',
         'directoryHint',
@@ -85,10 +86,9 @@ function atto_edusharing_params_for_js() {
     $params['disabled'] = false;
     $params['repourl'] = trim(get_config('edusharing', 'application_cc_gui_url'), '/');
     $params['courseid'] = $COURSE->id;
-    $params['buttonTitle'] = 'edu-sharing';
-
-    if (!empty(get_config('edusharing', 'application_appname'))){
-        $params['buttonTitle'] = get_config('edusharing', 'application_appname');
+    $params['attoHint'] = get_string('hint1', 'atto_edusharing') . '<br/><br/>' . get_string('hint2', 'atto_edusharing');
+    if (!empty(get_config('edusharing', 'atto_hint'))){
+        $params['attoHint'] = get_config('edusharing', 'atto_hint');
     }
 
     return $params;

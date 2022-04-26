@@ -37,77 +37,6 @@ YUI.add('moodle-atto_edusharing-button', function (Y, NAME) {
 
 var COMPONENTNAME = 'atto_edusharing';
 
-var TEMPLATE = '<div id="edusharing_hint"> ' +
-    '<img src="" id="edusharing_hint_logo">' +
-    '<img id="edusharing_hint_help" src="' + M.cfg.wwwroot + '/lib/editor/atto/plugins/edusharing/pix/help_en.gif">' +
-    '{{get_string "hint1" component}}<br/><br/>{{get_string "hint2" component}}' +
-    '<div style="clear: both"></div>' +
-    '<div id="edusharing_hint_skip"><input type="checkbox" id="edusharing_hint_check" ' +
-        'name="edusharing_hint_check" value="dontshow" />' +
-    '<label for="edusharing_hint_check">{{get_string "skipHint" component}}</label></div>' +
-    '<div class="edusharing_center edusharing_hint_buttons"><a id="edusharing_hint_close" class="btn btn-secondary" href="#">' +
-    '{{get_string "cancel" component}}</a> ' +
-    '<button id="edusharing_open_repo" class="btn btn-primary">{{get_string "openRepo" component}}</button></div>' +
-    '</div> ' +
-    '<form id="edusharing_form" class="atto_form" style="display: none">' +
-    '<input id="edusharing_object_url" name="edusharing_object_url" type="hidden" value="" />' +
-    '<input id="edusharing_resid" name="edusharing_resid" type="hidden" value="" />' +
-    '<input id="edusharing_mimetype" name="edusharing_mimetype" type="hidden" value="" />' +
-    '<input id="edusharing_mediatype" name="edusharing_mediatype" type="hidden" value="" />' +
-    '<input id="edusharing_preview_url" name="edusharing_preview_url" type="hidden" value="" />' +
-    '<input id="edusharing_version" name="edusharing_version" type="hidden" value="" />' +
-    '<input id="edusharing_ratio" name="edusharing_ratio" type="hidden" value="" />' +
-    '<h2>{{get_string "title" component}}</h2>' +
-    '<input id="edusharing_title" name="edusharing_title" value="" maxlength="25"/>' +
-    '<i id="edusharing_title_pencil" class="icon fa fa-pencil fa-fw " aria-hidden="true"></i> ' +
-    '<span style="position:absolute; color: rgba(0, 0, 0, 0); display:inline-block; font-size:2em;"' +
-    'id="edusharing_title_helper" name="edusharing_title_helper" value=""></span> ' +
-    '<img src="" id="edusharing_preview"> ' +
-    '<div id="edusharing_hint_directory" style="display:none">' +
-    '{{get_string "directoryHint" component}}' +
-    '</div>' +
-    '<br/><input type="checkbox" id="edusharing_version_latest" name="edusharing_version_latest" checked />' +
-    '<label for="edusharing_version_latest" class="edusharing_label_inline" id="edusharing_version_latest_label">' +
-    '{{get_string "alwaysShowLatestVersion" component}}</label> ' +
-    '<div id="edusharing_wrapper_caption" class="edusharing_form_wrapper">' +
-    '<h2>{{get_string "subtitle" component}}</h2> ' +
-    '<input id="edusharing_caption" name="edusharing_caption" value="" />' +
-    '</div>' +
-    '<div id="edusharing_wrapper_alignment" class="edusharing_form_wrapper">' +
-    '<h2>{{get_string "alignment" component}}</h2> ' +
-    '<div class="edusharing_wrapper_alignment_radiowrapper">' +
-    '<input type="radio" id="edusharing_alignment_left" name="edusharing_alignment" value="left">' +
-    '<label for="edusharing_alignment_left" class="edusharing_label_inline">' +
-    '{{get_string "alignmentLeft" component}}</label> ' +
-    '</div>' +
-    '<div class="edusharing_wrapper_alignment_radiowrapper">' +
-    '<input type="radio" id="edusharing_alignment_right" name="edusharing_alignment" value="right">' +
-    '<label for="edusharing_alignment_right" class="edusharing_label_inline">' +
-    '{{get_string "alignmentRight" component}}</label> ' +
-    '</div>' +
-    '<div class="edusharing_wrapper_alignment_radiowrapper">' +
-    '<input type="radio" id="edusharing_alignment_none" name="edusharing_alignment" value="none" checked="checked">' +
-    '<label for="edusharing_alignment_none" class="edusharing_label_inline">' +
-    '{{get_string "alignmentNone" component}}</label> ' +
-    '</div>' +
-    '</div>' +
-    '<div id="edusharing_wrapper_dimensions" class="edusharing_form_wrapper">' +
-    '<h2>{{get_string "dimensions" component}}</h2>' +
-    '<div style="float:left;margin-right: 20px;">' +
-    '<label for="edusharing_width" class="edusharing_label_block">{{get_string "dimensionsWidth" component}}</label>' +
-    '<input type="number" id="edusharing_width" name="edusharing_width" value="" maxlength="4" length="4" />&nbsp;px' +
-    '</div>' +
-    '<div>' +
-    '<label for="edusharing_height" class="edusharing_label_block">{{get_string "dimensionsheight" component}}</label>' +
-    '<input type="number" id="edusharing_height" name="edusharing_height" value="" maxlength="4" length="4"/>&nbsp;px' +
-    '</div>' +
-    '</div>' +
-    '<div id="edusharing_wrapper_buttons" class="edusharing_form_wrapper">' +
-    '<a id="edusharing_dialog_cancel" class="btn" href="#">{{get_string "cancel" component}}</a>' +
-    '<button id="edusharing_submit" class="btn btn-primary">{{get_string "insert" component}}</button> ' +
-    '</div>' +
-    '</form>';
-
 Y.namespace('M.atto_edusharing').Button = Y.Base.create('button', Y.M.editor_atto.EditorPlugin, [], {
 
     /**
@@ -124,7 +53,6 @@ Y.namespace('M.atto_edusharing').Button = Y.Base.create('button', Y.M.editor_att
             icon: 'icon',
             iconComponent: 'edusharing',
             buttonName: 'icon',
-            title: this.get('buttonTitle'),
             callback: this._displayDialogue,
             callbackArgs: 'icon',
             tags: '.edusharing_atto',
@@ -147,6 +75,81 @@ Y.namespace('M.atto_edusharing').Button = Y.Base.create('button', Y.M.editor_att
                 that.updateDialog(node);
             }
         }, false);
+    },
+
+    getTemplate: function() {
+        var template = '<div id="edusharing_hint"> ' +
+            '<img src="" id="edusharing_hint_logo">' +
+            '<img id="edusharing_hint_help" src="' + M.cfg.wwwroot + '/lib/editor/atto/plugins/edusharing/pix/help_en.gif">' +
+            this.get('attoHint') +
+            '<div style="clear: both"></div>' +
+            '<div id="edusharing_hint_skip"><input type="checkbox" id="edusharing_hint_check" ' +
+            'name="edusharing_hint_check" value="dontshow" />' +
+            '<label for="edusharing_hint_check">{{get_string "skipHint" component}}</label></div>' +
+            '<div class="edusharing_center edusharing_hint_buttons"><a id="edusharing_hint_close" class="btn btn-secondary" href="#">' +
+            '{{get_string "cancel" component}}</a> ' +
+            '<button id="edusharing_open_repo" class="btn btn-primary">{{get_string "openRepo" component}}</button></div>' +
+            '</div> ' +
+            '<form id="edusharing_form" class="atto_form" style="display: none">' +
+            '<input id="edusharing_object_url" name="edusharing_object_url" type="hidden" value="" />' +
+            '<input id="edusharing_resid" name="edusharing_resid" type="hidden" value="" />' +
+            '<input id="edusharing_mimetype" name="edusharing_mimetype" type="hidden" value="" />' +
+            '<input id="edusharing_mediatype" name="edusharing_mediatype" type="hidden" value="" />' +
+            '<input id="edusharing_preview_url" name="edusharing_preview_url" type="hidden" value="" />' +
+            '<input id="edusharing_version" name="edusharing_version" type="hidden" value="" />' +
+            '<input id="edusharing_ratio" name="edusharing_ratio" type="hidden" value="" />' +
+            '<h2>{{get_string "title" component}}</h2>' +
+            '<input id="edusharing_title" name="edusharing_title" value="" maxlength="25"/>' +
+            '<i id="edusharing_title_pencil" class="icon fa fa-pencil fa-fw " aria-hidden="true"></i> ' +
+            '<span style="position:absolute; color: rgba(0, 0, 0, 0); display:inline-block; font-size:2em;"' +
+            'id="edusharing_title_helper" name="edusharing_title_helper" value=""></span> ' +
+            '<img src="" id="edusharing_preview"> ' +
+            '<div id="edusharing_hint_directory" style="display:none">' +
+            '{{get_string "directoryHint" component}}' +
+            '</div>' +
+            '<br/><input type="checkbox" id="edusharing_version_latest" name="edusharing_version_latest" checked />' +
+            '<label for="edusharing_version_latest" class="edusharing_label_inline" id="edusharing_version_latest_label">' +
+            '{{get_string "alwaysShowLatestVersion" component}}</label> ' +
+            '<div id="edusharing_wrapper_caption" class="edusharing_form_wrapper">' +
+            '<h2>{{get_string "subtitle" component}}</h2> ' +
+            '<input id="edusharing_caption" name="edusharing_caption" value="" />' +
+            '</div>' +
+            '<div id="edusharing_wrapper_alignment" class="edusharing_form_wrapper">' +
+            '<h2>{{get_string "alignment" component}}</h2> ' +
+            '<div class="edusharing_wrapper_alignment_radiowrapper">' +
+            '<input type="radio" id="edusharing_alignment_left" name="edusharing_alignment" value="left">' +
+            '<label for="edusharing_alignment_left" class="edusharing_label_inline">' +
+            '{{get_string "alignmentLeft" component}}</label> ' +
+            '</div>' +
+            '<div class="edusharing_wrapper_alignment_radiowrapper">' +
+            '<input type="radio" id="edusharing_alignment_right" name="edusharing_alignment" value="right">' +
+            '<label for="edusharing_alignment_right" class="edusharing_label_inline">' +
+            '{{get_string "alignmentRight" component}}</label> ' +
+            '</div>' +
+            '<div class="edusharing_wrapper_alignment_radiowrapper">' +
+            '<input type="radio" id="edusharing_alignment_none" name="edusharing_alignment" value="none" checked="checked">' +
+            '<label for="edusharing_alignment_none" class="edusharing_label_inline">' +
+            '{{get_string "alignmentNone" component}}</label> ' +
+            '</div>' +
+            '</div>' +
+            '<div id="edusharing_wrapper_dimensions" class="edusharing_form_wrapper">' +
+            '<h2>{{get_string "dimensions" component}}</h2>' +
+            '<div style="float:left;margin-right: 20px;">' +
+            '<label for="edusharing_width" class="edusharing_label_block">{{get_string "dimensionsWidth" component}}</label>' +
+            '<input type="number" id="edusharing_width" name="edusharing_width" value="" maxlength="4" length="4" />&nbsp;px' +
+            '</div>' +
+            '<div>' +
+            '<label for="edusharing_height" class="edusharing_label_block">{{get_string "dimensionsheight" component}}</label>' +
+            '<input type="number" id="edusharing_height" name="edusharing_height" value="" maxlength="4" length="4"/>&nbsp;px' +
+            '</div>' +
+            '</div>' +
+            '<div id="edusharing_wrapper_buttons" class="edusharing_form_wrapper">' +
+            '<a id="edusharing_dialog_cancel" class="btn" href="#">{{get_string "cancel" component}}</a>' +
+            '<button id="edusharing_submit" class="btn btn-primary">{{get_string "insert" component}}</button> ' +
+            '</div>' +
+            '</form>';
+
+        return template;
     },
 
     getUrlVars: function(query) {
@@ -216,27 +219,27 @@ Y.namespace('M.atto_edusharing').Button = Y.Base.create('button', Y.M.editor_att
             Y.one('#edusharing_wrapper_dimensions').set('style', 'visibility:hidden');
         } else {
             var maxWidth = 1000; // Max width for the image
-            var maxHeight = 1000;    // Max height for the image
-            var ratio = 0;  // Used for aspect ratio
-            var width = Math.round(node.properties['ccm:width']) || 600;    // Current image width
-            var height = Math.round(node.properties['ccm:height']) || 400;  // Current image height
+            var maxHeight = 1000; // Max height for the image
+            var ratio = 0; // Used for aspect ratio
+            var width = Math.round(node.properties['ccm:width']) || 600; // Current image width
+            var height = Math.round(node.properties['ccm:height']) || 400; // Current image height
 
             // Check if the current width is larger than the max
-            if(width > maxWidth){
-                ratio = maxWidth / width;   // get ratio for scaling image
-                height = height * ratio;    // Reset height to match scaled image
-                width = width * ratio;    // Reset width to match scaled image
+            if (width > maxWidth) {
+                ratio = maxWidth / width; // Get ratio for scaling image
+                height = height * ratio; // Reset height to match scaled image
+                width = width * ratio; // Reset width to match scaled image
             }
 
             // Check if current height is larger than max
-            if(height > maxHeight){
-                ratio = maxHeight / height; // get ratio for scaling image
-                width = width * ratio;    // Reset width to match scaled image
-                height = height * ratio;    // Reset height to match scaled image
+            if (height > maxHeight) {
+                ratio = maxHeight / height; // Get ratio for scaling image
+                width = width * ratio; // Reset width to match scaled image
+                height = height * ratio; // Reset height to match scaled image
             }
 
-            //var width = Math.round(node.properties['ccm:width']) || 600;
-            //var height = Math.round(node.properties['ccm:height']) || 400;
+            // Var width = Math.round(node.properties['ccm:width']) || 600;
+            // var height = Math.round(node.properties['ccm:height']) || 400;
             Y.one('#edusharing_width').set('value', Math.round(width));
             Y.one('#edusharing_height').set('value', Math.round(height));
             Y.one('#edusharing_ratio').set('value', width / height);
@@ -487,7 +490,8 @@ Y.namespace('M.atto_edusharing').Button = Y.Base.create('button', Y.M.editor_att
      * @private
      */
     _getFormContent: function(clickedicon) {
-        var template = Y.Handlebars.compile(TEMPLATE),
+        //var template = Y.Handlebars.compile(TEMPLATE),
+        var template = Y.Handlebars.compile(this.getTemplate()),
             content = Y.Node.create(template({
                 component: COMPONENTNAME,
                 clickedicon: clickedicon,
@@ -552,7 +556,7 @@ Y.namespace('M.atto_edusharing').Button = Y.Base.create('button', Y.M.editor_att
             .then(function(response) {
                 var ticket = response;
                 repoUrl += '/components/search?reurl=WINDOW&applyDirectories=true&ticket=' + ticket;
-                //window.win = window.open(repoUrl);
+                // Window.win = window.open(repoUrl);
                 window.win.location.href = repoUrl;
             });
     },
@@ -726,6 +730,9 @@ Y.namespace('M.atto_edusharing').Button = Y.Base.create('button', Y.M.editor_att
         ticket: {
             value: ''
         },
+        attoHint: {
+            value: ''
+        },
         existingObjects: {
             value: []
         }
@@ -857,7 +864,7 @@ edusharingObject.prototype.link = function link(node) {
  */
 edusharingObject.prototype.unlink = function unlink(node) {
     // Tell moodle about deleted object.
-    var helper_url = M.cfg.wwwroot + '/lib/editor/atto/plugins/edusharing/delete.php?sesskey=' + M.cfg.sesskey  +
+    var helper_url = M.cfg.wwwroot + '/lib/editor/atto/plugins/edusharing/delete.php?sesskey=' + M.cfg.sesskey +
         '&courseid=' + this.course;
 
     // Bind object for context.
